@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import { GoogleLogin } from "react-google-login";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
-
+  const responseGoogle = (response) => {
+    console.log(response);
+  };
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -24,7 +27,7 @@ const Login = (props) => {
     event.preventDefault();
     try {
       const { data } = await login({
-        variables: { ...formState },
+        variables: { ...formState }
       });
 
       Auth.login(data.login.token);
@@ -34,8 +37,8 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: ""
     });
   };
 
@@ -47,7 +50,7 @@ const Login = (props) => {
           <div className="card-body">
             {data ? (
               <p>
-                Success! You may now head{' '}
+                Success! You may now head{" "}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
@@ -70,11 +73,19 @@ const Login = (props) => {
                 />
                 <button
                   className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                   type="submit"
                 >
                   Submit
                 </button>
+                <p className="text-2xl flex justify-center">or</p>
+                <GoogleLogin
+                  clientId="765980873643-btg4d4hikn2elghuv9k3jcevujpjg5cm.apps.googleusercontent.com"
+                  buttonText="Login"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                  cookiePolicy={"single_host_origin"}
+                />
               </form>
             )}
 

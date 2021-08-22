@@ -20,6 +20,16 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_SOCIAL_USER = gql`
+  query socialUsers {
+    socialUsers{
+      _id
+      username
+      email
+    }
+  }
+`
+
 export const QUERY_ME = gql`
   query me {
     me {

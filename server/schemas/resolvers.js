@@ -10,6 +10,9 @@ const resolvers = {
     user: async (_, args) => {
       return User.findOne({ _id: args.id });
     },
+    socialUser: async (_, args) => {
+      return SocialUser.findOne({ email: args.email });
+    },
     socialUsers: async () => {
     return SocialUser.find();
     },

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
+import { LOGIN_USER, ADD_SOCIAL_USER } from "../utils/mutations";
 import { GoogleLogin } from "react-google-login";
-
 import Auth from "../utils/auth";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [addSocialUser, { addSocialErr, socialUserData }] =
+    useMutation(ADD_SOCIAL_USER);
   const responseGoogle = (response) => {
     console.log(response);
   };
@@ -62,6 +63,7 @@ const Login = (props) => {
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
+                  required
                 />
                 <input
                   className="form-input"
@@ -70,6 +72,7 @@ const Login = (props) => {
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
+                  required
                 />
                 <button
                   className="btn btn-block btn-primary"

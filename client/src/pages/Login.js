@@ -8,8 +8,12 @@ import Auth from "../utils/auth";
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+<<<<<<< HEAD
   const [addSocialUser, { addSocialErr, socialUserData }] =
     useMutation(ADD_SOCIAL_USER);
+=======
+  const [loginSocial, { errorSocial, dataSocial }] = useMutation(ADD_SOCIAL_USER);
+>>>>>>> 785ef9d096f4f0d42f66d144bed927d40e003cb5
   const responseGoogle = (response) => {
     console.log(response);
   };

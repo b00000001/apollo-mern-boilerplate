@@ -7,11 +7,19 @@ const typeDefs = gql`
     email: String
     password: String
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 785ef9d096f4f0d42f66d144bed927d40e003cb5
   type SocialUser {
     _id: ID
     username: String
     email: String
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 785ef9d096f4f0d42f66d144bed927d40e003cb5
   type Auth {
     token: ID!
     user: User
@@ -20,6 +28,10 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(id: ID!): User
+<<<<<<< HEAD
+=======
+    socialUsers: [SocialUser]
+>>>>>>> 785ef9d096f4f0d42f66d144bed927d40e003cb5
     socialUser(email: String!): SocialUser
     me: User
   }

@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER, ADD_SOCIAL_USER } from "../utils/mutations";
-import { QUERY_SOCIAL_USER } from "../utils/queries";
 import { GoogleLogin } from "react-google-login";
 import Auth from "../utils/auth";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
-  const [loginSocial, { errorSocial, dataSocial }] =
-    useMutation(ADD_SOCIAL_USER);
+  const addSocial = useMutation(ADD_SOCIAL_USER);
   const responseGoogle = (response) => {
     // update state based on form input changes
   };

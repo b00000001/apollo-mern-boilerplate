@@ -10,9 +10,7 @@ import UserList from "../components/UserList";
 const Home = () => {
   const queryUser = useQuery(QUERY_USERS);
   const users = queryUser.data?.users || [];
-  const querySocial = useQuery(QUERY_SOCIAL_USER, {
-    variables: "deas.aaron@gmail.com"
-  });
+  const querySocial = useQuery(QUERY_SOCIAL_USER);
   const socialUsers = querySocial.data?.socialUsers || [];
   if (socialUsers) {
     console.log("SocialUser Data", socialUsers);
@@ -21,7 +19,13 @@ const Home = () => {
     if (queryUser.loading) {
       return <h2>Loading...</h2>;
     } else {
-      return <UserList users={users} title="List of Users" />;
+      return (
+        <UserList
+          users={users}
+          socialUsers={socialUsers}
+          title="List of Users"
+        />
+      );
     }
   };
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const User = ({ _id, username }) => {
   return (
@@ -13,20 +13,23 @@ const User = ({ _id, username }) => {
   );
 };
 
-const UserList = ({ users, title }) => {
+const UserList = ({ users, socialUsers, title }) => {
   if (!users.length) return <h3>No Users</h3>;
-
+  if (!socialUsers.length) return <h3>No Social Users</h3>;
   const renderUsers = () => {
     if (!users) return null;
-    return users
-      // .filter(user => )
-      .map(user => <User key={user._id} {...user} />);
-  }
-
+    return users.map((user) => <User key={user._id} {...user} />);
+  };
+  const renderSocialUsers = () => {
+    if (!socialUsers) return null;
+    return socialUsers.map((user) => <User key={user._id} {...user} />);
+  };
   return (
     <>
       <h3>{title}</h3>
       {renderUsers()}
+      <h3>Social Users:</h3>
+      {renderSocialUsers()}
     </>
   );
 };
